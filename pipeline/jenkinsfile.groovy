@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage("List file") {
+        stage("Read file") {
             steps {
                 script {
                     echo "Stage 2"

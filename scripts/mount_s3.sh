@@ -21,4 +21,10 @@ which s3fs
 sudo mkdir /s3bucket
 
 # mount s3 bucket
-sudo s3fs mys3bucketpoc123 -o iam_role=${IAM_ROLE_NAME} -o use_cache=/tmp -o allow_other -o uid=1000 -o mp_umask=002 -o multireq_max=5 /s3bucket
+# sudo s3fs ${BUCKET_NAME} -o iam_role=${IAM_ROLE_NAME} -o use_cache=/tmp -o allow_other -o uid=1000 -o mp_umask=002 -o multireq_max=5 /s3bucket
+
+sudo cat << EOF >> /etc/fstab
+s3fs#${BUCKET_NAME} /s3bucket fuse _netdev,iam_role=${IAM_ROLE_NAME},use_cache=/tmp,allow_other,uid=1000 0 0
+EOF
+
+sudo mount -a

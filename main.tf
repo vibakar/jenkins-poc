@@ -44,7 +44,8 @@ data "cloudinit_config" "master" {
   part {
     content_type = "text/x-shellscript"
     content = templatefile("scripts/mount_s3.sh", {
-      IAM_ROLE_NAME = var.IAM_ROLE_NAME
+      IAM_ROLE_NAME = var.IAM_ROLE_NAME,
+      BUCKET_NAME = var.BUCKET_NAME
     })
   }
 }
@@ -61,7 +62,8 @@ data "cloudinit_config" "agent" {
   part {
     content_type = "text/x-shellscript"
     content = templatefile("scripts/mount_s3.sh", {
-      IAM_ROLE_NAME = var.IAM_ROLE_NAME
+      IAM_ROLE_NAME = var.IAM_ROLE_NAME,
+      BUCKET_NAME = var.BUCKET_NAME
     })
   }
 }
